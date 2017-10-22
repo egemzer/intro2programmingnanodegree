@@ -9,7 +9,7 @@
 <p>
   <h1>The World Wide Web</h1>
 The web is composed largely of HTML documents. <br>
-<b>HTML</b> stands for HyperText Markup Language. HTML is the language the browsers use to interpret web pages. <br>
+<b>HTML</b> stands for HyperText Markup Language. HTML is the language the browsers use to interpret web pages. HTML defines the structure of a page. DOM reads the HTML to define the tree, and CSS (Cascading Style Sheets) imposes style. <br>
 The client and servers interact through something called the <b>Hypertext Transfer Protocol (HTTP)</b>
 <br><br>The components of the web include <br>
 + the client (your computer and browser)<br>
@@ -20,24 +20,90 @@ The client and servers interact through something called the <b>Hypertext Transf
 <p>
   <h1>Basic HTML Elements</h1>
 HTML elements are what we use to tell a web browser how to display content on a web page.
-Most HTML elements consist of an opening and a closing tag with some content between them.
-<br>
+Most HTML elements consist of an opening and a closing tag with some content between them. Elements can also have attributes (see below), which are used by CSS.
+<br><br>
+<b> a basic HTML element</b><br>
+&lt;b&gt;tag attribute <span style="color:deeppink">content</span>&lt;b/&gt;
+<br><br>
 &lt;b&gt;<span style="color:deeppink">text</span>&lt;b/&gt; Makes the 'text' content bold <br>
 &lt;em&gt;<span style="color:deeppink">text</span>&lt;em/&gt;  Makes the 'text' content italic <br>
 &lt;p&gt;<span style="color:deeppink">text</span>&lt;p&gt; Defines a paragraph. The content of the &lt;p&gt; element is in a "box" <br>
 &lt;<span style="color:deeppink">br</span>&gt; Creates a line break <br>
-&lt;<span style="color:deeppink">div</span>&gt;content&lt;/div&gt; Creates a "box" container element <br>
+&lt;<span style="color:deeppink">div</span>&gt;content&lt;/div&gt; Creates a "box" container element. Divs are block elements (as opposed to inline), so by default they take up the entire width of a page. <br>
 &lt;span&gt;<span style="color:deeppink">content</span>&lt;/span&gt; Creates an "inline" container element <br>
 </p>
 
 <p>
   <h1>HTML Attributes</h1>
 Some elements accept additional values called attributes in their opening tags.
-Attributes provide additional information to the browser. For example, the anchor tag takes an attribute called href that defines a URL to link to. <br>
+Attributes provide additional information to the browser. For example, the anchor tag takes an attribute called href that defines a URL to link to.
+Attributes also provide information to CSS to enable styling.
 <br>
 &lt;a href=<span style="color:deeppink">"URL</span>&gt;<span style="color:deeppink">link</span>&lt;/a&gt; Creates a hyperlink to the href attribute value url and names it link <br>
 <br>
 &lt;img src=<span style="color:deeppink">"URL"</span> alt=<span style="color:deeppink">"text</span>&gt; Displays the image hosted at the src attribute value "url". In this example, "img" is the tag and "src" is an attribute. Note that images don't have closing tags (void tag)
 </p>
+
+<p>
+  <h1>How HTML becomes the Web</h1>
+HTML tags are read by <b>Document Object Model (DOM)</b> to form elements in a tree.
+For any web page, you can use Chrome Developer Tools ("inspect element") to see the tags and trees. <br>
+ HTML is read by DOM. CSS converts HTML attributes into styled pages.
+</p>
+
+<p>
+  <h1>Cascading Style Sheets (CSS)</h1>
++ You can have multiple CSS for one HTML document. <br>
+<br>
+<b> CSS vocabulary</b>
+<br><b>Rule</b>: a line of CSS code describing the value that a certain attribute should take. The most specific rule applies (everywhere).
+<br><b>Property</b>: The property you want to change.
+<br><b>Value</b>: The value that you want to assign to the attribute.
+<br><b>Selector</b>: The name that you use to in order to target the elements that are assigned to a class or id attribute in the HTML.
+<br><b>Class</b>: A class refers to a group of elements that can be styled together. Class names should not contain periods or any other punctuation marks such as class="1.1"
+<br><b>ID</b>: ID's are unique identifiers that uniquely identifies an element in HTML.
+
+<br><b>CSS formatting</b><br>
+.class name from HTML (aka CSS "selector") {
+  CSS attribute: value
+}
+<br><br><b>Where to put your CSS</b><br>
+Preferred method: Link your HTML to a separate CSS file (best idea)
+<br>
+<UL>
+  <LI>Write all of your structural HTML in one file (let's call it main.html).
+  <LI>In a separate file (let's call it main.css), put all of your CSS code.
+  <LI>Add a <head> element to the top of your HTML.
+  <LI>Add a <link> tag inside the <head> element. Since <link> is a "void tag" you don't need to add a closing </link>.
+  <LI>Add the following attributes to your <link>:
+    <UL>
+    <LI>rel="stylesheet"
+    <LI>href="main.css"
+    </UL>
+</UL>
+
+<p>
+  <h1>Box Sizing and Positioning in CSS</h1>
+  Box Sizing
+HTML elements are boxes and each box has 4 components.<br>
+Because there are so many components to each box, it can often be hard to get the size of a box just right.
+There are two techniques you can use to help deal with sizing issues:
+
+<UL>
+  <LI>Set sizes in terms of percentages rather than pixels.
+  <LI> Set the box-sizing attribute to border-box for every element using * {
+  <LI> Adding the rule display: flex; to the appropriate CSS will override this behavior and let divs appear next to each other.
+  </UL>
+</p>
+
+<p>
+  <h1>Verifying your HTML and CSS</h1>
+  <UL>
+    <LI> To verify HTML: http://validator.w3.org/#validate_by_input
+    <LI> To verify CSS: http://jigsaw.w3.org/css-validator/#validate_by_input
+  <UL>
+</p>
+
+
 </body>
 </html>
