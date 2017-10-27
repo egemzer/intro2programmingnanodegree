@@ -31,16 +31,8 @@ tuple, and ___4___ or can be more complicated such as objects and lambda functio
 
 # If you need help, you can sign up for a 1 on 1 coaching appointment: https://calendly.com/ipnd-1-1/20min/
 
-# Checks if a word in possible_answers is a substring of the word passed in.
-def word_in_pos(word, possible_answers):
-    for ind in possible_answers:
-        if ind in word:
-            return ind
-    return None
-
-get_started = """Fill in the Banks and Test your Python knowledge!""
-\n Choose your level of difficulty (easy, medium, hard, impossible" and answer when prompted to fill in the blanks.
-"""
+get_started = """\n Fill in the Banks and Test your Python knowledge!""
+\n Choose your level of difficulty (easy, medium, hard, impossible" and answer when prompted to fill in the blanks."""
 
 # all of the options for the blanks in the quiz. Each paragraph can have up to 4 blanks
 blank_options = ["___1___", "___2___", "___3___", "___4___"]
@@ -73,7 +65,7 @@ medium_paragraph = """A ___1___ in Python can either be a "#" for a single line 
 medium_answers = ["comment", "for", "split", "join"]
 
 #if the user selects "hard" game mode, this is the corresponding paragraph and answers
-hard_paragraph = """The main different between a ___1___ and a list is mutability: a ___1___ is immutable, whereas a list is mutable. Items in a ___1___ can't be modified. One of the cool things you can do with a list is ___2___ lists within lists. A list within a list only takes one index slot. To increment an integer variable by 1, use "var ___3___." In Python, users can be prompted to provide inputs using the function ___4___."""
+hard_paragraph = """The main difference between a ___1___ and a list is mutability: a ___1___ is immutable, whereas a list is mutable. Items in a ___1___ can't be modified. One of the cool things you can do with a list is ___2___ lists within lists. A list within a list only takes one index slot. To increment an integer variable by 1, use "var ___3___." In Python, users can be prompted to provide inputs using the function ___4___."""
 hard_answers = ["tuple", "nest", "+= 1", "raw_input"]
 
 #if the user selects "impossible" game mode, this is the corresponding paragraph and answers
@@ -96,22 +88,26 @@ def guess(successful_blanks):
     guess = raw_input("\nEnter your best guess for {}: \n Your guess: ".format(current_blank))
     return guess
 
+# # asks the user to provide number of acceptable attempts
+# def max_attempts():
+#     max_attempts = 1
+#     max_attempts = raw_input("\nHow many attempts do you want per blank?: ")
+#     return max_attempts
 
 # where the magic happens. The engine for the game. Takes user input, uses other functions, and congratulates users when they complete the level.
 def quiz_engine():
-	successful_blanks = 0
-	print get_started
-	user_level, answer_set = choose_level()
-	while successful_blanks< len(blank_options):
-		print user_level
-		user_guess = guess(blank_options[successful_blanks])
-		if user_guess == answer_set[successful_blanks]:
-			print "\nCorrect! Nice job.\n"
-			user_level = user_level.replace(blank_options[successful_blanks], user_guess)
-			successful_blanks += 1
-		else:
-			print "\nSorry, try again.\n"
-	print "Congratulations! You filled in all the blanks correctly. \n"
-	print user_level
+    successful_blanks = 0
+    print get_started
+    user_level, answer_set = choose_level()
+    while successful_blanks< len(blank_options):
+        print user_level
+        user_guess = guess(blank_options[successful_blanks])
+        if user_guess == answer_set[successful_blanks]:
+            print "\nCorrect! Nice job.\n"
+            user_level = user_level.replace(blank_options[successful_blanks], user_guess)
+        else:
+            print "\nSorry, try again.\n"
+        print "Congratulations! You filled in all the blanks correctly. \n"
+        print user_level
 
 quiz_engine()
