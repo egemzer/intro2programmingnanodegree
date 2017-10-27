@@ -40,7 +40,7 @@ blank_options = ["___1___", "___2___", "___3___", "___4___"]
 #	Asks user for desired level, then returns corresponding paragrpah and solution word set
 def choose_level():
 	level = ""
-	print "Which level do you choose?: easy, medium, hard, or impossible?"
+	print "\nWhich level do you choose?: easy, medium, hard, or impossible?"
 	levels = ["easy", "medium", "hard", "impossible"]
 	while level not in levels:
 		level = raw_input("Choose a level: ")
@@ -89,25 +89,37 @@ def guess(successful_blanks):
     return guess
 
 # # asks the user to provide number of acceptable attempts
-# def max_attempts():
-#     max_attempts = 1
-#     max_attempts = raw_input("\nHow many attempts do you want per blank?: ")
-#     return max_attempts
+def max_attempts():
+    max_attempts = 1 # default to one attempt
+    print "\nHow many attempts do you want per blank?: "
+    max_attempts = int(raw_input(" "))
+    return max_attempts
 
 # where the magic happens. The engine for the game. Takes user input, uses other functions, and congratulates users when they complete the level.
 def quiz_engine():
     successful_blanks = 0
+    attempts = 0
     print get_started
     user_level, answer_set = choose_level()
-    while successful_blanks< len(blank_options):
+    maxAttempts = max_attempts()
+    while successful_blanks < len(blank_options):
         print user_level
         user_guess = guess(blank_options[successful_blanks])
         if user_guess == answer_set[successful_blanks]:
             print "\nCorrect! Nice job.\n"
             user_level = user_level.replace(blank_options[successful_blanks], user_guess)
+            successful_blanks += 1
+            attempts = 0
+            if successful_blanks == len(blank_options):
+                print user_level
+                print "\n Congratulations! You filled in all the blanks correctly. \n"
+                break
         else:
-            print "\nSorry, try again.\n"
-        print "Congratulations! You filled in all the blanks correctly. \n"
-        print user_level
+            attempts += 1
+            if attempts >= maxAttempts:
+                print "\nSorry, you failed!  Do a bit of Python research and try again! \n"
+                break
+            else:
+                print "\nSorry, try again. You've attempted ", attempts, " times \n"
 
 quiz_engine()
