@@ -65,7 +65,7 @@ medium_paragraph = """A ___1___ in Python can either be a "#" for a single line 
 medium_answers = ["comment", "for", "split", "join"]
 
 #if the user selects "hard" game mode, this is the corresponding paragraph and answers
-hard_paragraph = """The main different between a ___1___ and a list is mutability: a ___1___ is immutable, whereas a list is mutable. Items in a ___1___ can't be modified. One of the cool things you can do with a list is ___2___ lists within lists. A list within a list only takes one index slot. To increment an integer variable by 1, use "var ___3___." In Python, users can be prompted to provide inputs using the function ___4___."""
+hard_paragraph = """The main difference between a ___1___ and a list is mutability: a ___1___ is immutable, whereas a list is mutable. Items in a ___1___ can't be modified. One of the cool things you can do with a list is ___2___ lists within lists. A list within a list only takes one index slot. To increment an integer variable by 1, use "var ___3___." In Python, users can be prompted to provide inputs using the function ___4___."""
 hard_answers = ["tuple", "nest", "+= 1", "raw_input"]
 
 #if the user selects "impossible" game mode, this is the corresponding paragraph and answers
