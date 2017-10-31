@@ -37,23 +37,23 @@ get_started = """\n Fill in the Banks and Test your Python knowledge!""
 # all of the options for the blanks in the quiz. Each paragraph can have up to 4 blanks
 blank_options = ["___1___", "___2___", "___3___", "___4___"]
 
-#	Asks user for desired level, then returns corresponding paragrpah and solution word set
+#       Asks user for desired level, then returns corresponding paragrpah and solution word set
 def choose_level():
-	level = ""
-	print "\nWhich level do you choose?: easy, medium, hard, or impossible?"
-	levels = ["easy", "medium", "hard", "impossible"]
-	while level not in levels:
-		level = raw_input("Choose a level: ")
-        if level == "easy":
-            return easy_paragraph, easy_answers
-        elif level == "medium":
-            return medium_paragraph, medium_answers
-        elif level == "hard":
-            return hard_paragraph, hard_answers
-        elif level == "impossible":
-            return impossible_paragraph, impossible_answers
-        else:
-            print "Invalid input. Choose from these levels: easy, medium, hard, impossible"
+    level = ""
+    print "\nWhich level do you choose?: easy, medium, hard, or impossible?"
+    levels = ["easy", "medium", "hard", "impossible"]
+    while level not in levels:
+        level = raw_input("Choose a level: ")
+    if level == "easy":
+        return easy_paragraph, easy_answers
+    elif level == "medium":
+        return medium_paragraph, medium_answers
+    elif level == "hard":
+        return hard_paragraph, hard_answers
+    elif level == "impossible":
+        return impossible_paragraph, impossible_answers
+    else:
+        print "Invalid input. Choose from these levels: easy, medium, hard, impossible"
 
 
 #if the user selects "easy" game mode, this is the corresponding paragraph and answers
@@ -74,28 +74,39 @@ information. Each item in each of these ___1___ is a key-value pair. Other conce
 are called ___3___. Lastly, to debug your Python, consider using an ___4___, which tells the program to test a condition and trigger an error if the condition is false."""
 impossible_answers = ["dictionaries", "class", "methods", "assert"]
 
-# asks the user to provide an answer to the current blank.
+# asks the user to provide an answer to the current blank. Intakes the number of successful blanks the user has already answered, output is to ask the user for the correct answer to the current blank
 def guess(successful_blanks):
-    current_blank = successful_blanks
-    if successful_blanks == 0:
-        current_blank = blank_options[0]
-    elif successful_blanks == 1:
-        current_blank = blank_options[1]
-    elif successful_blanks == 2:
-        current_blank = blank_options[2]
-    elif successful_blanks == 3:
-        current_blank = blank_options[3]
+    current_blank = blank_options[successful_blanks]
     guess = raw_input("\nEnter your best guess for {}: \n Your guess: ".format(current_blank))
     return guess
 
-# # asks the user to provide number of acceptable attempts
+# asks the user to provide a number of acceptable attempts per blank and returns the number that the user input in their terminal
 def max_attempts():
     max_attempts = 1 # default to one attempt
     print "\nHow many attempts do you want per blank?: "
     max_attempts = int(raw_input(" "))
     return max_attempts
 
-# where the magic happens. The engine for the game. Takes user input, uses other functions, and congratulates users when they complete the level.
+# takes in the current state of the user quiz (user's guess, how many blanks they've completed, the answer set, the number of current attempts they've tried, the max number of attempts they will accept, and their current paragraph. Provides scoring and updates to the quiz state.
+def scoring(user_guess, successful_blanks, answer_set, attempts, maxAttempts, user_level):
+    if user_guess == answer_set[successful_blanks]:
+        print "\nCorrect! Nice job.\n"
+        new_paragraph = user_level.replace(blank_options[successful_blanks], user_guess)
+        successful_blanks += 1
+        attempts = 0
+        return new_paragraph, attempts, successful_blanks
+    elif user_guess != answer_set[successful_blanks] and attempts + 1 < maxAttempts:
+        attempts += 1
+        new_paragraph = user_level
+        print "\nSorry, try again. You've attempted ", attempts, " times \n"
+        return new_paragraph, attempts, successful_blanks
+    else:
+        attempts += 1
+        new_paragraph = user_level
+        return new_paragraph, attempts, successful_blanks
+
+
+# Takes user input from the terminal, uses other functions to intake information from the user and provides feedback to the user: failure or and congratulates users when they complete the level.
 def quiz_engine():
     successful_blanks = 0
     attempts = 0
@@ -104,22 +115,14 @@ def quiz_engine():
     maxAttempts = max_attempts()
     while successful_blanks < len(blank_options):
         print user_level
-        user_guess = guess(blank_options[successful_blanks])
-        if user_guess == answer_set[successful_blanks]:
-            print "\nCorrect! Nice job.\n"
-            user_level = user_level.replace(blank_options[successful_blanks], user_guess)
-            successful_blanks += 1
-            attempts = 0
-            if successful_blanks == len(blank_options):
-                print user_level
-                print "\n Congratulations! You filled in all the blanks correctly. \n"
-                break
-        else:
-            attempts += 1
-            if attempts >= maxAttempts:
-                print "\nSorry, you failed!  Do a bit of Python research and try again! \n"
-                break
-            else:
-                print "\nSorry, try again. You've attempted ", attempts, " times \n"
+        user_guess = guess(successful_blanks)
+        user_level, attempts, successful_blanks = scoring(user_guess, successful_blanks, answer_set, attempts, maxAttempts, user_level)
+        if successful_blanks == len(blank_options):
+            print user_level
+            print "\n Congratulations! You filled in all the blanks correctly. \n"
+            break
+        elif attempts >= maxAttempts:
+            print "\nSorry, you failed!  Do a bit of Python research and try again! \n"
+            break
 
 quiz_engine()

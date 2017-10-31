@@ -1,0 +1,107 @@
+/* This is a CSS comment. Notice that CSS comments are
+enclosed by different characters than HTML comments. */
+
+/* CSS allows you to give your page style (colors, shapes, fonts, etc.)
+You can apply CSS elements to entire HTML classes. Review Lesson 1.3
+if you need a refresher about how to do this. */
+* {
+   -webkit-box-sizing: border-box;
+   -webkit-margin-before:0px;
+   -webkit-margin-after:0px;
+   -moz-box-sizing: border-box;
+   -ms-box-sizing: border-box;
+   box-sizing: border-box;
+   font-family: 'Josefin Sans','Molengo',Tahoma, "Geneva", sans-serif;
+
+}
+body {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  font-size: 16px;
+
+}
+
+img {
+  width: 60%;
+  height: 60%;
+  display: block;
+  margin: auto;
+}
+
+
+.title {
+  margin-top: 2px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  text-align: center;
+  color: #ffa429;
+  font-size: 6em;
+}
+
+.motto {
+  font-family: 'Molengo', sans-serif;
+  font-size: 1.4em;
+  color: #939393;
+  text-align: center;
+  margin-top: -15px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.shop {
+  font-size: 2em;
+    color: #ffa429;
+    margin-top: 2px;
+    text-align: center;
+    margin-bottom: 0px;
+  }
+
+
+p {
+  font-family: 'Molengo', sans-serif;
+    color: #939393;
+    font-size: 1em;
+    margin-top: 0px;
+    margin-bottom: 3px;
+}
+
+.etsy {
+    float: left;
+    text-align: center;
+    width: 40%;
+    height:auto;
+    margin-left: 8%;
+    margin-right: 2px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 15px;
+    border: 2px solid #939393;
+}
+
+.amazon {
+  text-align: center;
+  float: right;
+  width: 40%;
+  height:auto;
+  margin-right: 8%;
+  margin-left: 2px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 15px;
+  border: 2px solid #939393;
+}
+
+.description {
+  clear: both;
+  font-family: 'Molengo', sans-serif;
+  font-size: 1em;
+  color: #939393;
+  max-width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
+  margin-top: 40px;
+  border-top: 40px;
+  padding-bottom: 0px;
+}
