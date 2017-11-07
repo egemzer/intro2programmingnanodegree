@@ -65,7 +65,10 @@ dances_with_wolves = media.Movie("Dances with Wolves",
 
 
 
+#the list of movies we want to display from the instances above
 movies = [toy_story, avatar, pretty_woman, frida, last_of_the_mohicans, twenty_eight_days, hope_floats, gladiator, clueless, jurassic_park, braveheart, dances_with_wolves]
+
+#calls another file, which creates the HTML and launches the HTML page
 fresh_tomatoes.open_movies_page(movies)
 
 
